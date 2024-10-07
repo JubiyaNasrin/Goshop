@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ d.name }} - Product Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px; /* Decrease container width */
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            max-width: 200px; /* Decrease image width */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center image horizontally */
+            border-radius: 8px;
+        }
+        .product-details {
+            margin-top: 20px;
+            text-align: center; /* Center text within product details */
+        }
+        .product-details p {
+            margin: 10px 0;
+            font-size: 16px; /* Adjust font size if needed */
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; /* Center buttons horizontally */
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .add-to-cart {
+            background-color: #28a745;
+            color: white;
+        }
+        .remove {
+            background-color: #dc3545;
+            color: white;
+        }
+        .button:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Product Detail Information -->
+        <h1>{{ d.name }}</h1>
+        <img src="{{ d.image.url }}" class="product-image" alt="Product Image">
+        <div class="product-details">
+            <p><strong>Price:</strong> ${{ d.price }}</p>
+            <p><strong>Description:</strong> {{ d.description }}</p>
+        </div>
+
+        <!-- Button Container -->
+        <div class="button-container">
+            <!-- Add to Cart Form -->
+            <form action="{% url 'app:add_cart' d.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="button add-to-cart">Add to Cart</button>
+            </form>
+
+        
+        
+                <!-- payment form -->
+                <form action="{% url 'app:payment' d.id %}" method="post">
+                    {% csrf_token %}
+                    <!-- <button type="submit" class="button Payment">Pay Now</button> -->
+                    <button type="submit" class="button Payment" style="background-color: red; color: white;">Pay Now</button>
+
+                </form>
+            
+            
+        </div>
+    </div>
+</body>
+</html>

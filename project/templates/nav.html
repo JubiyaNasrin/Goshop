@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Include Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- Include Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <!-- Include Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/8b8ca58c15.js" crossorigin="anonymous"></script>
+    
+    <!-- Meta Description and Title -->
+    <meta name="description" content="{% block metadescription %} {% endblock %}">
+    <title>{% block title %}GOSHOP{% endblock %}</title>
+    <style>
+          .navbar {
+        background-color: black; /* Navbar background color */
+        padding: 10px;
+        position: -webkit-sticky; /* Safari support */
+        position: sticky; /* Make navbar sticky */
+        top: 0; /* Navbar will stick to the top of the page */
+        z-index: 1030; /* Ensure navbar stays on top of other content */
+    }
+
+    .nav-link {
+        color: black !important; /* Default text color, always black */
+        font-size: 18px; /* Adjust font size */
+        text-decoration: none; /* Remove underline if any */
+    }
+
+    .nav-link:hover {
+        color: black !important; /* Keep text color black on hover */
+    }
+
+    .nav-link i {
+        color: black !important; /* Default color for all icons */
+    }
+
+    .nav-link i:hover {
+        color: black !important; /* Keep icon color black on hover */
+    }
+
+
+    </style>
+</head>
+
+<body>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+
+        <div class="container-fluid">
+          <!-- Logo -->
+          <a href="{% url 'app:home' %}">
+            <img src="{% static 'image/Goshop Logo.png' %}" alt="Logo" id="a1">
+        </a>
+        
+          
+          <!-- Toggler Button for Mobile View -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <!-- Navbar Content -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <!-- Search Form -->
+            <form class="d-flex" role="search">
+              <div class="search-container">
+                <input type="text" placeholder="Search for Products, Brands and More" id="a2">
+                <i class="fas fa-search search-icon"></i>
+              </div>
+            </form>
+      
+            <!-- Navbar Links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: auto;">
+              <li class="nav-item">
+                <a href="{% url 'app:home' %}" class="nav-link">
+                  <i class="fas fa-home"></i> Home
+                </a>
+              </li>
+      
+              <!-- Account Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdownAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user"></i> Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAccount">
+                  <li><a class="dropdown-item" href="{% url 'app:signup' %}">Sign Up</a></li>
+                  <li><a class="dropdown-item" href="{% url 'app:signin' %}">Sign In</a></li>
+                  <li><a class="dropdown-item" href="{% url 'app:signout' %}">Sign Out</a></li>
+                </ul>
+              </li>
+              
+              <!-- Shop By Dropdown -->
+              <li class="nav-item dropdown {% if 'app' in request.path %} active {% endif %}">
+                <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdownShopBy" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-tags"></i> Shop By
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownShopBy">
+                  <li><a class="dropdown-item" href="{% url 'app:home' %}">All Products</a></li>
+                  {% for cat in links %}
+                    <li><a class="dropdown-item" href="{{ cat.get_url }}">{{ cat.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+      
+              <!-- Wishlist and Cart Links -->
+              <!-- <li class="nav-item">
+                <a class="nav-link text-black" href="#"><i class="fas fa-heart"></i> Wishlist</a>
+              </li> -->
+
+              <!-- <li class="nav-item">
+                {% if item_count %}
+                    <a class="nav-link text-black" href="{% url 'app:cart_detail' cart.id %}">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count">{{ item_count }}</span>
+                    </a>
+                {% else %}
+                    <a class="nav-link text-black" href="{% url 'app:cart_detail' 0 %}">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                    </a>
+                {% endif %}
+            </li> -->
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+       {% block content %}
+  
+        <!-- This block will be overridden in child templates -->         
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!-- {% extends 'nav.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        .button {
+            padding: 8px 16px; /* Adjusted padding for a smaller button */
+            margin: 8px 4px;
+            font-size: 14px; /* Slightly smaller font size */
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .add-to-cart {
+            background-color: #28a745; /* Green color */
+            color: white;
+        }
+        .remove {
+            background-color: #dc3545; /* Red color */
+            color: white;
+        }
+        .cart-count {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 12px;
+            position: absolute; /* Changed to absolute for better control */
+            top: -10px;
+            right: -10px;
+            /* Ensure it's placed correctly relative to the cart icon */
+        }
+        .container {
+            max-width:50px; /* Decreased container width */
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .cart-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap to the next line if necessary */
+            gap: 20px; /* Space between items */
+            justify-content: center; /* Center items horizontally */
+        }
+        .cart-item {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px;
+            text-align: center;
+            width: calc(50% - 20px); /* Adjust width to fit 2 items per row with gap */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .cart-item img {
+            max-width: 200px; /* Smaller image width */
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+
+    Cart Detail Information
+    <h1>Your Cart</h1>
+    <p>Total Items in Cart: {{ item_count }}</p>
+    
+    <!-- Display each cart item -->
+    <!-- {% if cart_items %}
+        <div class="cart-container">
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <img src="{{ item.product.image.url }}" alt="Product Image">
+                    <p style="font-size: 14px; font-weight: bold;">Name: {{ item.product.name }}</p>
+                    <p style="font-size: 14px; font-weight: bold;">Price: ${{ item.product.price }}</p>
+                    <p style="font-size: 14px; font-weight: bold;">Quantity: {{ item.quantity }}</p>
+                    <form action="{% url 'app:cart_remove' item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="button remove">Remove</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %} -->
+        <!-- <p>Your cart is empty.</p> -->
+        <!-- <p class="empty-cart-message">Your cart is empty. Start adding products to see them here!</p>
+    {% endif %}
+{% endblock %} -->
+
+
+
+            <!-- <button class="button remove"><a href="{% url 'app:payment' %}"> Pay Now</a></button> -->
+
+  <!-- payment -->
+<!-- 
+  {% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Make Payment</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Pacifico&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    .profile{
+        padding-top: 30px;
+    }
+</style>
+<body>
+
+    <div class="profile">
+        <div class="container">
+            <h1>Make <span style="color:#03c04a;">Payment</span></h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- <img src="{% static '/pay.png' %}" alt="Contact Image" class="img-fluid"> -->
+                     <!-- Display the Product Image -->
+                <img src="{{ d.image.url }}" alt="{{ product.image }}" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <form action="success" method="post" >
+                            {% csrf_token %}
+                            <!-- <div class="card-body">   
+                                <h5 class="card-title">Service Type: <b>{{ wastetype }}</b></h5>
+                                <h5 class="card-title">Total Weight: <b>{{ weight }} kg</b></h5>
+                                <h5 class="card-title">Minimum Service Charge: <b>Rs. 100/-</b></h5>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-success ml-4 mb-4">Pay Rupees 100/-</button> -->
+                            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_JAeLcxoJpwFjEq"
+                            data-amount="50000" data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
+                            data-name="Professional Cipher" data-description="Django and Data Science"
+                            data-image="https://example.com/your_logo.jpg" data-prefill.name="PC" data-prefill.email="pc@studygyaan.com"
+                            data-theme.color="#F37254"></script>
+                
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    </div>
+
+</body>
+
+</html> -->
+
+
+<!-- razorpay -->
+data-amount="50000" data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
+
+
+
+
+<!-- signup -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4; 
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'image/pink.png' %}"); /* Update the path to your image */
+            background-size: cover; 
+          
+        }
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: silver;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 580px;
+        }
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+      
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            /* background-color:#fff; Ensure all inputs have the same background color */
+            background-color: #f0f0f0; /* Replace this with the desired color */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-form">
+      <h2>CREATE ACCOUNT</h2>
+      <form method="POST" action="{% url 'app:signup' %}">
+          {% csrf_token %}
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          
+        </div>
+        <div class="input-group">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your password" required>
+          
+
+        </div>
+        <button type="submit">SUBMIT</button>
+        <div class="links">
+          <a href="{% url 'app:signin' %}">Already have an account? Sign In</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

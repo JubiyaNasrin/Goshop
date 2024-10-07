@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+        }
+        .success-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .success-container h1 {
+            color: #28a745;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .success-container p {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        .success-container p strong {
+            font-weight: 600;
+        }
+        .btn-custom {
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 10px 30px;
+            border-radius: 5px;
+            border: none;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+        .btn-custom:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-container">
+            <h1 class="text-success">Payment Successful!</h1>
+            <p>Your payment ID is: <strong>{{ payment_id }}</strong></p>
+            <a href="{% url 'app:home' %}" class="btn btn-custom">Go to Home</a>
+        </div>
+    </div>
+</body>
+</html>

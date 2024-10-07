@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <!-- Other Categories -->
+    {% for category, products in products_by_category.items %}
+        {% if category.name not in "Electronics,Cosmetics" %}
+        <h2 class="product-category-title">{{ category.name }}</h2>
+            <div class="product-grid" style="margin-left:50px; width:100%; align-items: center;">
+                {% for product in products %}
+                <div class="product-item">
+                    
+                    <a href="{% url 'app:detail' product.id %}">
+                      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                      <h3 id="m1">{{ product.name }}</h3>
+                      <p id="m2">${{ product.price }}</p>
+                      <button class="add-to-cart-btn">Add to Cart</button>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <!-- Carousel for Electronics and Cosmetics -->
+    
+    <div class="text-center my-3"> 
+        <h5>Recommended For You</h5>
+    </div>
+    <h2 class="product-category-title">Electronics & Cosmetics</h2>
+
+    <div id="electronicsCosmeticsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            
+            <!-- Electronics Category -->
+            <div class="carousel-item active">
+                <div class="row">
+                    {% for product in electronics %}
+                    <div class="col">
+                        <a href="{% url 'app:detail' product.id %}">
+                            <img src="{{ product.image.url }}" class="d-block w-100" alt="{{ product.name }}">
+                            <h3 id="m1">{{ product.name }}</h3>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Cosmetics Category -->
+            <div class="carousel-item">
+                <div class="row">
+                    {% for product in cosmetics %}
+                    <div class="col">
+                        <a href="{% url 'app:detail' product.id %}">
+                            <img src="{{ product.image.url }}" class="d-block w-100" alt="{{ product.name }}">
+                            <h3 id="m1">{{ product.name }}</h3>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+        </div>
+        <a class="carousel-control-prev" href="#electronicsCosmeticsCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#electronicsCosmeticsCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,171 @@
+/* logo */
+#a1{
+    height:-5px;
+    width:100px;
+    margin-right:20px;
+}
+
+/* search */
+#a2{
+    margin-left:100px;
+    border-radius:12px;
+    width:400px;
+    border-color:transparent;
+    background-color: rgb(227, 241, 253);
+    height:30px;
+    outline:0 none;
+}
+
+.search-container {
+    position: relative;
+    width: 300px;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 60%;
+    right:180px;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none; /* Makes sure the icon doesn't block input clicks */
+  }
+  #a2::placeholder {
+    padding-left:25px; /* Move placeholder text slightly to the right */
+  }
+
+ .navbar .dropdown-toggle::after {
+  content: none; 
+}
+
+
+
+
+/* our product collections */
+.my_title {
+  font-size: 20px; /* Adjust the font size */
+  font-family: 'Arial', sans-serif; /* Modern, clean font */
+  font-weight: bold; /* Bold text */
+  color: #333; /* Dark gray color */
+  text-align: center; /* Center the text */
+  letter-spacing: 1px; /* Slight spacing between letters */
+}
+
+/* fruits and vegetables */
+
+.product-category-title{
+  font-size: 15px;
+  font-family: 'Arial', sans-serif; /* Modern, clean font */
+  font-weight: bold; /* Bold text */
+  color: #333; /* Dark gray color */
+  /* text-align: center; Center the text */
+  letter-spacing: 1px; /* Slight spacing between letters */
+  margin-left:60px;
+
+}
+
+
+
+#m1{
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  
+
+  
+}
+
+ a{
+  color: black; /* Ensures that the link color is black if it is wrapped around #m1 */
+  text-decoration: none !important; 
+}
+
+#m2{
+  font-weight: bold;
+}
+
+
+body {
+  background-color: #f0f0f0;
+}
+
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+    max-width: 1000px;
+    margin: 0 auto; /* Center the grid */
+    margin-left: 190px; /* Adjust this to move it to the right */
+    background-color: white;
+  }
+  
+
+
+.product-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.product-item img {
+  max-width: 80%;  /* Adjust the percentage as needed */
+  height: 150px;   /* Set a fixed height for the image */
+  object-fit: cover; /* Ensures the image fits within the container */
+  margin-bottom: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.product-item img:hover {
+  transform: scale(1.1); /* Enlarge the image slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+}
+
+
+.product-item h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.product-item p {
+  font-size: 1em;
+  color: #333;
+}
+
+.add-to-cart-btn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838;
+}
+
+.copyright-section {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  text-align: center; /* Centered text */
+  padding: 10px 0; /* Padding for spacing */
+  font-size: 14px; /* Font size */
+}
+
+.copyright-section p {
+  margin: 0; /* Remove default margin */
+}
+
+/* Add this CSS to your stylesheet or within a <style> tag in your HTML */
+
+.carousel-item img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for the zoom effect */
+}
+
+.carousel-item img:hover {
+  transform: scale(1.1); /* Zooms the image to 110% of its original size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+}
+

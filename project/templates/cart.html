@@ -1,0 +1,148 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .cart-summary {
+            font-size: 18px;
+            color: #555;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .cart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .cart-item {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: calc(33.333% - 40px);
+            box-sizing: border-box;
+            transition: transform 0.3s;
+        }
+        .cart-item:hover {
+            transform: translateY(-5px);
+        }
+        .cart-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        .cart-item img:hover {
+            transform: scale(1.05);
+        }
+        .cart-item p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #444;
+        }
+        .cart-item p strong {
+            color: #333;
+        }
+        .button {
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart {
+            background-color: #28a745; /* Green */
+            color: white;
+        }
+        .remove {
+            background-color: #dc3545; /* Red */
+            color: white;
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+        .empty-cart-message {
+            font-size: 24px;
+            color: #888;
+            text-align: center;
+            margin: 50px 0;
+        }
+        .shop-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: green;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .shop-button:hover {
+            background-color:green;
+        }
+        @media (max-width: 768px) {
+            .cart-item {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 576px) {
+            .cart-item {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <!-- Cart Detail Information -->
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+        <p class="cart-summary">Total Items in Cart: {{ item_count }}</p>
+
+        <!-- Display each cart item -->
+        {% if cart_items %}
+            <div class="cart-container">
+                {% for item in cart_items %}
+                    <div class="cart-item">
+                        <img src="{{ item.product.image.url }}" alt="Product Image">
+                        <p><strong>Name:</strong> {{ item.product.name }}</p>
+                        <p><strong>Price:</strong> ${{ item.product.price }}</p>
+                        <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                        <form action="{% url 'app:cart_remove' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="button remove">Remove</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Cart is empty message -->
+            <p class="empty-cart-message">Your cart is empty. Start adding products to see them here!</p>
+
+            <!-- Shop with us button that redirects to the homepage -->
+            <div style="text-align: center;">
+                <a href="{% url 'app:home' %}" class="shop-button">Shop with us</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
